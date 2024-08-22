@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link href="EstilosGerais.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rota-T3-7</title>
+</head>
+<body>
+
+                                    <!-- Menu flutuante -->
+
+<nav class="MenuFlutuante">
+    <div id="voltar" onclick="window.location.href='index.html'">VOLTAR</div>
+    <h1 id="titulo">
+        Transp-UG
+    </h1>
+</nav>
+
+                                    <!-- Menu flutuante -->
+
+
+
+                                    <!-- Programação dos mapas -->
+
+    <script>
+        // Função para recarregar a página
+        function reloadPage() {
+            location.reload();
+        }
+
+        function showHorarios() {
+            const parada = document.getElementById('paradaSelect').value;
+            const rows = document.querySelectorAll('.horario');
+
+            // Esconde todas as linhas de horários
+            rows.forEach(row => {
+                row.style.display = 'none';
+            });
+
+            // Mostra a linha correspondente à parada selecionada
+            if (parada) {
+                document.getElementById('parada-' + parada).style.display = 'table-row';
+            }
+        }
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 0, lng: 0 },
+                zoom: 2,
+            });
+
+            // Caminho para o arquivo GPX
+            const filePath = 'RotaLinhaT3-7.gpx';
+
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(data, 'text/xml');
+                    
+                    // Extrair pontos de trilha
+                    const trackPoints = xml.querySelectorAll('trkpt');
+                    const pathCoordinates = [];
+                    trackPoints.forEach(function(point) {
+                        const lat = parseFloat(point.getAttribute('lat'));
+                        const lng = parseFloat(point.getAttribute('lon'));
+                        pathCoordinates.push({ lat: lat, lng: lng });
+                    });
+
+                    // Desenhar rota no mapa
+                    const path = new google.maps.Polyline({
+                        path: pathCoordinates,
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2,
+                    });
+                    path.setMap(map);
+
+                    // Extrair marcações (waypoints)
+                    const waypoints = xml.querySelectorAll('wpt');
+                    waypoints.forEach(function(waypoint, index) {
+                        const lat = parseFloat(waypoint.getAttribute('lat'));
+                        const lng = parseFloat(waypoint.getAttribute('lon'));
+                        const marker = new google.maps.Marker({
+                            position: { lat: lat, lng: lng },
+                            map: map,
+                            label: (index + 1).toString(), // Adicionando rótulo numérico
+                            title: 'Waypoint ' + (index + 1).toString()
+                        });
+
+                        // Adicionar evento de clique para exibir o Street View na janela de informações
+                        marker.addListener('click', function() {
+                            const panorama = new google.maps.StreetViewPanorama(
+                                document.getElementById('map'), {
+                                    position: { lat: lat, lng: lng },
+                                    pov: {
+                                        heading: 34,
+                                        pitch: 10
+                                    }
+                                });
+                            map.setStreetView(panorama);
+                        });
+                    });
+
+                    // Ajustar o zoom do mapa para exibir toda a rota
+                    const bounds = new google.maps.LatLngBounds();
+                    pathCoordinates.forEach(function(coord) {
+                        bounds.extend(coord);
+                    });
+                    map.fitBounds(bounds);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-XYhY_-4i47k68AcLHeOMR8msjEFPZzg&libraries=geometry&callback=initMap" async defer></script>
+
+                                    <!-- Programação dos mapas -->
+
+                                    <div id="map"></div>
+                                    
+                            <!-- Textos e imagens pré-mapas-e-seleção -->
+
+<div class="container">
+    <button onclick="reloadPage()" id="recarregar">Sair do StreetView</button>
+
+        <h1 id="MiniTitulo">Linha T3-7</h1>
+        <label for="paradaSelect" id="Subtextinho">Selecione o número conforme a parada desejada:</label>
+        <select id="paradaSelect" onchange="showHorarios()">
+            <option value="">Escolha uma parada</option>
+            <option value="1">Parada 1</option>
+            <option value="2">Parada 2</option>
+            <option value="3">Parada 3</option>      
+            <option value="4">Parada 4</option>
+            <option value="5">Parada 5</option>
+            <option value="6">Parada 6</option>
+            <option value="7">Parada 7</option>
+            <option value="8">Parada 8</option>
+            <option value="9">Parada 9</option>
+            <option value="10">Parada 10</option>
+            <option value="11">Parada 11</option>
+            <option value="12">Parada 12</option>
+            <option value="13">Parada 13</option>
+            <option value="14">Parada 14</option>
+            <option value="15">Parada 15</option>
+            <option value="16">Parada 16</option>
+            <option value="17">Parada 17</option>
+            <option value="18">Parada 18</option>
+            <option value="19">Parada 19</option>
+            <option value="20">Parada 20</option>
+            <option value="21">Parada 21</option>
+            <option value="22">Parada 22</option>
+            <option value="23">Parada 23</option>
+            <option value="24">Parada 24</option>
+            <option value="25">Parada 25</option>
+            <option value="26">Parada 26</option>
+            <option value="27">Parada 27</option>
+            <option value="28">Parada 28</option>
+            <option value="29">Parada 29</option>
+            <option value="30">Parada 30</option>
+            <option value="31">Parada 31</option>
+            <option value="32">Parada 32</option>
+            <option value="33">Parada 33</option>
+            <option value="34">Parada 34</option>
+            <option value="35">Parada 35</option>
+            <option value="36">Parada 36</option>
+            <option value="37">Parada 37</option>
+            <option value="38">Parada 38</option>
+            <option value="39">Parada 39</option>
+            <option value="40">Parada 40</option>
+        </select>
+
+        <table>
+            <thead>
+                <tr>
+                    <th id="textinhoHorarios">Horários da parada selecionada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="parada-1" class="horario">
+                    <td>07:15<br>07:45<br>08:15<br>08:45<br>09:15<br>09:45<br>10:15<br>10:45<br>11:15<br>11:45<br>12:15<br>12:45<br>13:15<br>13:45<br>14:15<br>14:45<br>15:15<br>15:45<br>16:15<br>16:45<br>17:15<br>17:45<br>18:15<br>18:45<br>19:15</td>
+                </tr>
+                <tr id="parada-2" class="horario">
+                    <td>07:18<br>07:48<br>08:18<br>08:48<br>09:18<br>09:48<br>10:18<br>10:48<br>11:18<br>11:48<br>12:18<br>12:48<br>13:18<br>13:48<br>14:18<br>14:48<br>15:18<br>15:48<br>16:18<br>16:48<br>17:18<br>17:48<br>18:18<br>18:48</td>
+                </tr>
+                <tr id="parada-3" class="horario">
+                    <td>07:20<br>07:50<br>08:20<br>08:50<br>09:20<br>09:50<br>10:20<br>10:50<br>11:20<br>11:50<br>12:20<br>12:50<br>13:20<br>13:50<br>14:20<br>14:50<br>15:20<br>15:50<br>16:20<br>16:50<br>17:20<br>17:50<br>18:20<br>18:50</td>
+                </tr>
+                <tr id="parada-4" class="horario">
+                    <td>07:22<br>07:52<br>08:22<br>08:52<br>09:22<br>09:52<br>10:22<br>10:52<br>11:22<br>11:52<br>12:22<br>12:52<br>13:22<br>13:52<br>14:22<br>14:52<br>15:22<br>15:52<br>16:22<br>16:52<br>17:22<br>17:52<br>18:22<br>18:52</td>
+                </tr>
+                <tr id="parada-5" class="horario">
+                    <td>07:23<br>07:53<br>08:23<br>08:53<br>09:23<br>09:53<br>10:23<br>10:53<br>11:23<br>11:53<br>12:23<br>12:53<br>13:23<br>13:53<br>14:23<br>14:53<br>15:23<br>15:53<br>16:23<br>16:53<br>17:23<br>17:53<br>18:23<br>18:53</td>
+                </tr>
+                <tr id="parada-6" class="horario">
+                    <td>07:25<br>07:55<br>08:25<br>08:55<br>09:25<br>09:55<br>10:25<br>10:55<br>11:25<br>11:55<br>12:25<br>12:55<br>13:25<br>13:55<br>14:25<br>14:55<br>15:25<br>15:55<br>16:25<br>16:55<br>17:25<br>17:55<br>18:25<br>18:55</td>
+                </tr>
+                <tr id="parada-7" class="horario">
+                    <td>07:26<br>07:56<br>08:26<br>08:56<br>09:26<br>09:56<br>10:26<br>10:56<br>11:26<br>11:56<br>12:26<br>12:56<br>13:26<br>13:56<br>14:26<br>14:56<br>15:26<br>15:56<br>16:26<br>16:56<br>17:26<br>17:56<br>18:26<br>18:56</td>
+                </tr>
+                <tr id="parada-8" class="horario">
+                    <td>07:28<br>07:58<br>08:28<br>08:58<br>09:28<br>09:58<br>10:28<br>10:58<br>11:28<br>11:58<br>12:28<br>12:58<br>13:28<br>13:58<br>14:28<br>14:58<br>15:28<br>15:58<br>16:28<br>16:58<br>17:28<br>17:58<br>18:28<br>18:58</td>
+                </tr>
+                <tr id="parada-9" class="horario">
+                    <td>07:31<br>08:01<br>08:31<br>09:01<br>09:31<br>10:01<br>10:31<br>11:01<br>11:31<br>12:01<br>12:31<br>13:01<br>13:31<br>14:01<br>14:31<br>15:01<br>15:31<br>16:01<br>16:31<br>17:01<br>17:31<br>18:01<br>18:31<br>19:01</td>
+                </tr>
+                <tr id="parada-10" class="horario">
+                    <td>07:32<br>08:02<br>08:32<br>09:02<br>09:32<br>10:02<br>10:32<br>11:02<br>11:32<br>12:02<br>12:32<br>13:02<br>13:32<br>14:02<br>14:32<br>15:02<br>15:32<br>16:02<br>16:32<br>17:02<br>17:32<br>18:02<br>18:32</td>
+                </tr>
+                <tr id="parada-11" class="horario">
+                    <td>07:33<br>08:03<br>08:33<br>09:03<br>09:33<br>10:03<br>10:33<br>11:03<br>11:33<br>12:03<br>12:33<br>13:03<br>13:33<br>14:03<br>14:33<br>15:03<br>15:33<br>16:03<br>16:33<br>17:03<br>17:33<br>18:03<br>18:33</td>
+                </tr>
+                <tr id="parada-12" class="horario">
+                    <td>07:34<br>08:04<br>08:34<br>09:04<br>09:34<br>10:04<br>10:34<br>11:04<br>11:34<br>12:04<br>12:34<br>13:04<br>13:34<br>14:04<br>14:34<br>15:04<br>15:34<br>16:04<br>16:34<br>17:04<br>17:34<br>18:04<br>18:34</td>
+                </tr>
+                <tr id="parada-13" class="horario">
+                    <td>07:35<br>08:05<br>08:35<br>09:05<br>09:35<br>10:05<br>10:35<br>11:05<br>11:35<br>12:05<br>12:35<br>13:05<br>13:35<br>14:05<br>14:35<br>15:05<br>15:35<br>16:05<br>16:35<br>17:05<br>17:35<br>18:05<br>18:35</td>
+                </tr>
+                <tr id="parada-14" class="horario">
+                    <td>07:37<br>08:07<br>08:37<br>09:07<br>09:37<br>10:07<br>10:37<br>11:07<br>11:37<br>12:07<br>12:37<br>13:07<br>13:37<br>14:07<br>14:37<br>15:07<br>15:37<br>16:07<br>16:37<br>17:07<br>17:37<br>18:07<br>18:37</td>
+                </tr>
+                <tr id="parada-15" class="horario">
+                    <td>07:37<br>08:07<br>08:37<br>09:07<br>09:37<br>10:07<br>10:37<br>11:07<br>11:37<br>12:07<br>12:37<br>13:07<br>13:37<br>14:07<br>14:37<br>15:07<br>15:37<br>16:07<br>16:37<br>17:07<br>17:37<br>18:07<br>18:37</td>
+                </tr>
+                <tr id="parada-16" class="horario">
+                    <td>07:40<br>08:10<br>08:40<br>09:10<br>09:40<br>10:10<br>10:40<br>11:10<br>11:40<br>12:10<br>12:40<br>13:10<br>13:40<br>14:10<br>14:40<br>15:10<br>15:40<br>16:10<br>16:40<br>17:10<br>17:40<br>18:10<br>18:40</td>
+                </tr>
+                <tr id="parada-17" class="horario">
+                    <td>07:44<br>08:14<br>08:44<br>09:14<br>09:44<br>10:14<br>10:44<br>11:14<br>11:44<br>12:14<br>12:44<br>13:14<br>13:44<br>14:14<br>14:44<br>15:14<br>15:44<br>16:14<br>16:44<br>17:14<br>17:44<br>18:14<br>18:44</td>
+                </tr>
+                <tr id="parada-18" class="horario">
+                    <td>07:45<br>08:15<br>08:45<br>09:15<br>09:45<br>10:15<br>10:45<br>11:15<br>11:45<br>12:15<br>12:45<br>13:15<br>13:45<br>14:15<br>14:45<br>15:15<br>15:45<br>16:15<br>16:45<br>17:15<br>17:45<br>18:15<br>18:45</td>
+                </tr>
+                <tr id="parada-19" class="horario">
+                    <td>07:45<br>08:15<br>08:45<br>09:15<br>09:45<br>10:15<br>10:45<br>11:15<br>11:45<br>12:15<br>12:45<br>13:15<br>13:45<br>14:15<br>14:45<br>15:15<br>15:45<br>16:15<br>16:45<br>17:15<br>17:45<br>18:15<br>18:45</td>
+                </tr>
+                <tr id="parada-20" class="horario">
+                    <td>07:46<br>08:16<br>08:46<br>09:16<br>09:46<br>10:16<br>10:46<br>11:16<br>11:46<br>12:16<br>12:46<br>13:16<br>13:46<br>14:16<br>14:46<br>15:16<br>15:46<br>16:16<br>16:46<br>17:16<br>17:46<br>18:16<br>18:46</td>
+                </tr>
+                <tr id="parada-21" class="horario">
+                    <td>07:46<br>08:16<br>08:46<br>09:16<br>09:46<br>10:16<br>10:46<br>11:16<br>11:46<br>12:16<br>12:46<br>13:16<br>13:46<br>14:16<br>14:46<br>15:16<br>15:46<br>16:16<br>16:46<br>17:16<br>17:46<br>18:16<br>18:46</td>
+                </tr>
+                <tr id="parada-22" class="horario">
+                    <td>07:48<br>08:18<br>08:48<br>09:18<br>09:48<br>10:18<br>10:48<br>11:18<br>11:48<br>12:18<br>12:48<br>13:18<br>13:48<br>14:18<br>14:48<br>15:18<br>15:48<br>16:18<br>16:48<br>17:18<br>17:48<br>18:18<br>18:48</td>
+                </tr>
+                <tr id="parada-23" class="horario">
+                    <td>07:48<br>08:18<br>08:48<br>09:18<br>09:48<br>10:18<br>10:48<br>11:18<br>11:48<br>12:18<br>12:48<br>13:18<br>13:48<br>14:18<br>14:48<br>15:18<br>15:48<br>16:18<br>16:48<br>17:18<br>17:48<br>18:18<br>18:48</td>
+                </tr>
+                <tr id="parada-24" class="horario">
+                    <td>07:49<br>08:19<br>08:49<br>09:19<br>09:49<br>10:19<br>10:49<br>11:19<br>11:49<br>12:19<br>12:49<br>13:19<br>13:49<br>14:19<br>14:49<br>15:19<br>15:49<br>16:19<br>16:49<br>17:19<br>17:49<br>18:19<br>18:49</td>
+                </tr>
+                <tr id="parada-25" class="horario">
+                    <td>07:49<br>08:19<br>08:49<br>09:19<br>09:49<br>10:19<br>10:49<br>11:19<br>11:49<br>12:19<br>12:49<br>13:19<br>13:49<br>14:19<br>14:49<br>15:19<br>15:49<br>16:19<br>16:49<br>17:19<br>17:49<br>18:19<br>18:49</td>
+                </tr>
+                <tr id="parada-26" class="horario">
+                    <td>07:50<br>08:20<br>08:50<br>09:20<br>09:50<br>10:20<br>10:50<br>11:20<br>11:50<br>12:20<br>12:50<br>13:20<br>13:50<br>14:20<br>14:50<br>15:20<br>15:50<br>16:20<br>16:50<br>17:20<br>17:50<br>18:20<br>18:50</td>
+                </tr>
+                <tr id="parada-27" class="horario">
+                    <td>07:52<br>08:22<br>08:52<br>09:22<br>09:52<br>10:22<br>10:52<br>11:22<br>11:52<br>12:22<br>12:52<br>13:22<br>13:52<br>14:22<br>14:52<br>15:22<br>15:52<br>16:22<br>16:52<br>17:22<br>17:52<br>18:22<br>18:52</td>
+                </tr>
+                <tr id="parada-28" class="horario">
+                    <td>07:53<br>08:23<br>08:53<br>09:23<br>09:53<br>10:23<br>10:53<br>11:23<br>11:53<br>12:23<br>12:53<br>13:23<br>13:53<br>14:23<br>14:53<br>15:23<br>15:53<br>16:23<br>16:53<br>17:23<br>17:53<br>18:23<br>18:53</td>
+                </tr>
+                <tr id="parada-29" class="horario">
+                    <td>07:54<br>08:24<br>08:54<br>09:24<br>09:54<br>10:24<br>10:54<br>11:24<br>11:54<br>12:24<br>12:54<br>13:24<br>13:54<br>14:24<br>14:54<br>15:24<br>15:54<br>16:24<br>16:54<br>17:24<br>17:54<br>18:24<br>18:54</td>
+                </tr>
+                <tr id="parada-30" class="horario">
+                    <td>07:55<br>08:25<br>08:55<br>09:25<br>09:55<br>10:25<br>10:55<br>11:25<br>11:55<br>12:25<br>12:55<br>13:25<br>13:55<br>14:25<br>14:55<br>15:25<br>15:55<br>16:25<br>16:55<br>17:25<br>17:55<br>18:25<br>18:55</td>
+                </tr>
+                <tr id="parada-31" class="horario">
+                    <td>07:57<br>08:27<br>08:57<br>09:27<br>09:57<br>10:27<br>10:57<br>11:27<br>11:57<br>12:27<br>12:57<br>13:27<br>13:57<br>14:27<br>14:57<br>15:27<br>15:57<br>16:27<br>16:57<br>17:27<br>17:57<br>18:27<br>18:57</td>
+                </tr>
+                <tr id="parada-32" class="horario">
+                    <td>07:57<br>08:27<br>08:57<br>09:27<br>09:57<br>10:27<br>10:57<br>11:27<br>11:57<br>12:27<br>12:57<br>13:27<br>13:57<br>14:27<br>14:57<br>15:27<br>15:57<br>16:27<br>16:57<br>17:27<br>17:57<br>18:27<br>18:57</td>
+                </tr>
+                <tr id="parada-33" class="horario">
+                    <td>07:58<br>08:28<br>08:58<br>09:28<br>09:58<br>10:28<br>10:58<br>11:28<br>11:58<br>12:28<br>12:58<br>13:28<br>13:58<br>14:28<br>14:58<br>15:28<br>15:58<br>16:28<br>16:58<br>17:28<br>17:58<br>18:28<br>18:58</td>
+                </tr>
+                <tr id="parada-34" class="horario">
+                    <td>08:00<br>08:30<br>09:00<br>09:30<br>10:00<br>10:30<br>11:00<br>11:30<br>12:00<br>12:30<br>13:00<br>13:30<br>14:00<br>14:30<br>15:00<br>15:30<br>16:00<br>16:30<br>17:00<br>17:30<br>18:00<br>18:30<br>19:00</td>
+                </tr>
+                <tr id="parada-35" class="horario">
+                    <td>08:01<br>08:31<br>09:01<br>09:31<br>10:01<br>10:31<br>11:01<br>11:31<br>12:01<br>12:31<br>13:01<br>13:31<br>14:01<br>14:31<br>15:01<br>15:31<br>16:01<br>16:31<br>17:01<br>17:31<br>18:01<br>18:31<br>19:01</td>
+                </tr>
+                <tr id="parada-36" class="horario">
+                    <td>08:02<br>08:32<br>09:02<br>09:32<br>10:02<br>10:32<br>11:02<br>11:32<br>12:02<br>12:32<br>13:02<br>13:32<br>14:02<br>14:32<br>15:02<br>15:32<br>16:02<br>16:32<br>17:02<br>17:32<br>18:02<br>18:32<br>19:02</td>
+                </tr>                        
+                <tr id="parada-37" class="horario">
+                    <td>08:03<br>08:33<br>09:03<br>09:33<br>10:03<br>10:33<br>11:03<br>11:33<br>12:03<br>12:33<br>13:03<br>13:33<br>14:03<br>14:33<br>15:03<br>15:33<br>16:03<br>16:33<br>17:03<br>17:33<br>18:03<br>18:33<br>19:03</td>
+                </tr>
+                <tr id="parada-38" class="horario">
+                    <td>08:05<br>08:35<br>09:05<br>09:35<br>10:05<br>10:35<br>11:05<br>11:35<br>12:05<br>12:35<br>13:05<br>13:35<br>14:05<br>14:35<br>15:05<br>15:35<br>16:05<br>16:35<br>17:05<br>17:35<br>18:05<br>18:35<br>19:05</td>
+                </tr>
+                <tr id="parada-39" class="horario">
+                    <td>08:06<br>08:36<br>09:06<br>09:36<br>10:06<br>10:36<br>11:06<br>11:36<br>12:06<br>12:36<br>13:06<br>13:36<br>14:06<br>14:36<br>15:06<br>15:36<br>16:06<br>16:36<br>17:06<br>17:36<br>18:06<br>18:36<br>19:06</td>
+                </tr>
+                <tr id="parada-40" class="horario">
+                    <td>07:08<br>07:38<br>08:08<br>08:38<br>09:08<br>09:38<br>10:08<br>10:38<br>11:08<br>11:38<br>12:08<br>12:38<br>13:08<br>13:38<br>14:08<br>14:38<br>15:08<br>15:38<br>16:08<br>16:38<br>17:08<br>17:38<br>18:08<br>18:38</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+                        <!-- Textos e imagens pré-mapas-e-seleção -->
+        
+    <div class="textosAviso">
+        <div class="Texto">
+            Os horários podem ter uma variação de +/- 10 Minutos ! <br> Aos sábados o ônibus passará de hora em hora, partindo do terminal às 7h15, com sua última saída do terminal às 18h45. <br> Aos domingos e feriados NÃO há ônibus !  
+        </div>
+    </div>
+
+</body>
+</html>

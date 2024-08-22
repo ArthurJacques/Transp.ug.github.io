@@ -1,0 +1,27 @@
+    <!-- api-mapas -->
+
+    <!-- T1 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbzeVTO1pWgaAl98O0TnQXpCpV8i3Nlnw&libraries=geometry"></script>
+    <!-- T1 -->
+
+    <!-- T2 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQaBXK9YsxGntH9q9SjCQJfpXNv1PvAzE&libraries=geometry"></script>
+    <!-- T2 -->
+
+    <!-- T3-7 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-XYhY_-4i47k68AcLHeOMR8msjEFPZzg&libraries=geometry"></script>
+    <!-- T3-7 -->
+
+    <!-- T4-5 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7QXDMB1AuA4ctwT4y0IGTTU51Y3powY8&libraries=geometry"></script>
+    <!-- T4-5-->
+
+    <!-- T6(Unipampa sem uso) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXbef_XXjxcVP0Js3jzfcYQCrcvufCDoU8&libraries=geometry"></script>
+    <!-- T6(Unipampa sem uso) -->
+
+    <!-- T8 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7egnMFiiELhso_T1xEwgfhSaMwD9rbFQ&libraries=geometry"></script>
+    <!-- T8 -->
+    
+    <!-- api-mapas -->

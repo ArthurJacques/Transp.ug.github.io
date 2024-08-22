@@ -1,0 +1,256 @@
+/* Estilos gerais */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #000000;
+}
+
+#map {
+  height: 70vh;
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.horario {
+  display: none;
+  font-size: 25px;
+}
+
+#paradaSelect {
+  margin: 5px;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+/* Estilos gerais */
+  
+/* Menu flutuante */
+.MenuFlutuante {
+  position: relative;
+  background-color: #5a93dd;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+  
+#titulo {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 40px;
+  margin: auto;
+  color: white;
+}
+
+#voltar {
+  position: absolute;
+  margin-left: 10px;
+  padding: 5px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: aliceblue;
+  transition: background-color 0.5s ease;
+}
+#voltar:hover {
+  background-color: rgb(159, 171, 180);
+}
+
+#SobreNos {
+  position: absolute;
+  margin-left: 10px;
+  padding: 5px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: aliceblue;
+  transition: background-color 0.5s ease;
+}
+#SobreNos:hover {
+  background-color: rgb(159, 171, 180);
+}
+/* Menu flutuante */
+  
+/* Textos com classes específicas para posição */
+.textos {
+  position: relative;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+  text-indent: 40px;
+}
+@media only screen and (max-width: 767px) {
+  .textos {
+    width: 90%;
+  }
+}
+
+.textosAviso {
+  position: relative;
+  font-style: italic;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ff0000; 
+  text-align: center;
+  z-index: 999;
+  margin: auto;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .textosAviso {
+    width: 100%;
+  }
+}
+
+  
+.imagens {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#MapaG {
+  height: 35%;
+  width: 45%;
+  border: #000000 solid 2px;
+}
+@media only screen and (max-width: 767px) {
+  #MapaG {
+    height: 300px;
+    width: 100%;
+  }
+}
+/* Textos com classes específicas para posição */
+  
+/* Estilização dos mapas */
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  margin-top: 20px;
+}
+
+.opcoes .escolha {
+  margin: 10px auto;
+  width: 45%;
+  font-family: 'Times New Roman', Times, serif;
+  color: #000000;
+  text-align: center;
+  font-size: 45px;
+  border: #000000 solid 2px;
+}
+
+@media only screen and (max-width: 767px) {
+  .opcoes .escolha {
+    width: 90%;
+  }
+}
+
+#botao-t1 {
+  font-weight: bold;
+  font-family: arial, sans-serif;
+  background-color: blue;
+  color: aliceblue;
+  transition: background-color 0.5s ease;
+}
+#botao-t1:hover {
+  background-color: darkblue;
+  color: white;
+}
+
+#botao-t2 {
+  font-weight: bold;
+  font-family: arial, sans-serif;
+  background-color: deeppink;
+  color: #ffffff;
+  transition: background-color 0.5s ease;
+}
+#botao-t2:hover {
+  background-color :mediumvioletred ;
+}
+
+#botao-t3_7 {
+  font-weight: bold;
+  font-family: arial, sans-serif;
+  background-color: greenyellow;
+  transition: background-color 0.5s ease;
+}
+#botao-t3_7:hover {
+  background-color: limegreen;
+  color: white;
+}
+
+#botao-t4_5 {
+  font-weight: bold;
+  font-family: arial, sans-serif;
+  background-color: aqua;
+  transition: background-color 0.5s ease;
+}
+#botao-t4_5:hover {
+  background-color: teal;
+  color: white;
+}
+
+#botao-t8 {
+  font-weight: bold;
+  font-family: arial, sans-serif;
+  background-color: darkorange;
+  transition: background-color 0.5s ease;
+}
+#botao-t8:hover {
+  background-color: orangered;
+  color: white;
+}
+/* Estilização dos mapas */
+
+/* Estilização da tabela com horários */
+#MiniTitulo {
+  font-size: 50px;
+  margin: 10px auto;
+}
+
+#Subtextinho {
+  font-size: 30px;
+}
+
+#paradaSelect {
+  font-size: 20px;
+}
+
+#recarregar {
+  font-size: 25px;
+  color: #ffffff;
+  background-color: #000000;
+}
+/* Estilização da tabela com horários */
